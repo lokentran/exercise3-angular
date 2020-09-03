@@ -1,0 +1,95 @@
+<a data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mb-3" href="">Add User</a>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name" [(ngModel)] = "addName">
+        </div> 
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Email" [(ngModel)] = "addEmail">
+        </div> 
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Address" [(ngModel)] = "addAddress">
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button (click)="addMoreUser()" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <input  type="search" class="form-control" placeholder="Search" (keyup) ="search($event)">
+</div>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of usersFilter; let i = index">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.address }}</td>
+      <td>
+        <button data-toggle="modal" data-target="#showEdit" class="btn btn-primary" href="" (click) = "showFormEdit(i)"  >Edit</button>
+      </td>
+      <td>
+        <button (click) = "remove(i)" class="btn btn-danger" href="">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Modal Edit -->
+<div class="modal fade" id="showEdit" tabindex="-1" aria-labelledby="showEditLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showEditLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="id"  [(ngModel)] = "id" hidden>
+        </div> 
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name"  [(ngModel)] = "editName" >
+        </div> 
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Email"  [(ngModel)] = "editEmail">
+        </div> 
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Adress"  [(ngModel)] = "editAddress">
+        </div> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateUser(id)">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

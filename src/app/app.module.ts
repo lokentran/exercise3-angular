@@ -9,6 +9,9 @@ import { PetProfileComponent } from './pet-profile/pet-profile.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { CalculateComponent } from './calculate/calculate.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { InputSearchComponent } from './input-search/input-search.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +20,14 @@ import { UserListComponent } from './user-list/user-list.component';
     PetProfileComponent,
     ColorPickerComponent,
     CalculateComponent,
-    UserListComponent
+    UserListComponent,
+    InputSearchComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

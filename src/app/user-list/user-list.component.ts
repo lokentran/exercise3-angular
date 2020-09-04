@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+  message: string;
+  p: number = 1;
+
   addName= "";
   addEmail= "";
   addAddress= "";
-  
+
   id = "";
   editName= "";
   editEmail= "";
@@ -52,10 +55,15 @@ export class UserListComponent implements OnInit {
     this.usersFilter = this.users;
   }
 
+  // search(event) {
+  //   // console.log(event.target.value);
+  //   // let keyword = event.target.value.toLowerCase();
+  //   this.usersFilter = (event) ? this.filterUser(event) : this.users;
+  // }
   search(event) {
-    console.log(event.target.value);
-    let keyword = event.target.value.toLowerCase();
-    this.usersFilter = (keyword) ? this.filterUser(keyword) : this.users;
+
+    console.log(event + 'tung');
+    this.usersFilter = (event) ? this.filterUser(event) : this.users;
   }
 
   filterUser(keyword) {
@@ -65,7 +73,11 @@ export class UserListComponent implements OnInit {
   }
 
   remove(id) {
-    this.users.splice(id,1);
+    if(confirm("Ban co chac chan muon xoa?")) {
+      this.users.splice(id,1);
+      this.message = "Xoa thanh cong";
+    }
+
   }
 
   addMoreUser() {
@@ -78,7 +90,7 @@ export class UserListComponent implements OnInit {
 
     this.addName = '';
     this.addEmail = '';
-    this.addAddress = ''; 
+    this.addAddress = '';
   }
 
   showFormEdit(id) {

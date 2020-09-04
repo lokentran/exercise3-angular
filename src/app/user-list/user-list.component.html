@@ -13,13 +13,13 @@
       <div class="modal-body">
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Name" [(ngModel)] = "addName">
-        </div> 
+        </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Email" [(ngModel)] = "addEmail">
-        </div> 
+        </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Address" [(ngModel)] = "addAddress">
-        </div> 
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -29,11 +29,11 @@
   </div>
 </div>
 
-<div class="form-group">
-  <input  type="search" class="form-control" placeholder="Search" (keyup) ="search($event)">
-</div>
 
 
+<app-input-search (keyword)="search($event)"></app-input-search>
+
+<app-message [message]="message"></app-message>
 
 <table class="table">
   <thead>
@@ -46,7 +46,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of usersFilter; let i = index">
+    <tr *ngFor="let user of usersFilter | paginate: { itemsPerPage: 2, currentPage: p } ; let i = index">
       <th scope="row">{{ i+1 }}</th>
       <td>{{ user.name }}</td>
       <td>{{ user.email }}</td>
@@ -62,6 +62,8 @@
 </table>
 
 
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
 <!-- Modal Edit -->
 <div class="modal fade" id="showEdit" tabindex="-1" aria-labelledby="showEditLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -75,16 +77,16 @@
       <div class="modal-body">
         <div class="form-group">
             <input type="text" class="form-control" placeholder="id"  [(ngModel)] = "id" hidden>
-        </div> 
+        </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Name"  [(ngModel)] = "editName" >
-        </div> 
+        </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Email"  [(ngModel)] = "editEmail">
-        </div> 
+        </div>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Adress"  [(ngModel)] = "editAddress">
-        </div> 
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
